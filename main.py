@@ -1,24 +1,24 @@
 import random
 
-allNums = list(range(1, 101))
-pickedNum = random.choice(allNums)
-guessedNum = int(input('Guess a number : '))
-while True:
-    while True:
-        if pickedNum == guessedNum:
-            print('You won!')
+pickedNum = random.randint(1, 100)
+guessedNum = 0
+tries = 0
+
+while guessedNum != pickedNum:
+    try:
+        guessedNum = int(input("Guess a number between 1-100 : "))
+        if guessedNum < 1 or guessedNum > 100:
+            print("Please enter a number between 1 and 100!")
             
+        tries += 1
+
+        if guessedNum < pickedNum:
+            print("BIGGER!")
         
-        elif pickedNum >= guessedNum:
-            print('BIGGER!')
-            guessedNum = int(input('Guess a number : '))
-            break
-        
-        elif pickedNum <= guessedNum:
-            print('smaller!')
-            guessedNum = int(input('Guess a number : '))
-            break
-        
-        else:
-            print('error')
-            break
+        elif guessedNum > pickedNum:
+            print("smaller!")
+
+    except ValueError:
+        print("Please enter a valid number!")
+
+print(f"Congrats you have guessed the number in {tries} tries.")        
